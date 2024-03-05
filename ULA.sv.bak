@@ -1,0 +1,17 @@
+module ULA (input [5:0] A,
+				input [5:0] B,
+				input rst,
+				clk,
+				modo,
+				input [2:0] operacao,
+				output [5:0] ula,
+				output carry_out,
+				zero);
+
+	always_comb @ (posedge clk)
+	begin
+	end
+
+
+
+endmodule 
