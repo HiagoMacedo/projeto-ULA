@@ -1,4 +1,4 @@
-module ULA (input [5:0] A,
+/*module ULA (input [5:0] A,
 				input [5:0] B,
 				input [2:0] operacao,
 				input reset,
@@ -7,25 +7,24 @@ module ULA (input [5:0] A,
 				output logic [5:0] o_resultado,
 				output logic o_overflow,
 				o_zero);
-
-/*module ULA (input CLOCK_50, 
+*/
+module ULA (input CLOCK_50, 
 				input [17:0] SW,
-				output logic [17:0] LEDR);*/
+				output logic [17:0] LEDR);
 	logic [6:0] aux;
-	/*logic [5:0] A;
+	logic [5:0] A;
 	logic [5:0] B;
 	logic [2:0] operacao;
 	logic reset;
 	logic modo;
 	logic [5:0] o_resultado;
 	logic o_overflow;
-	logic o_zero;*/
+	logic o_zero;
 	
 	 // always_comb begin
-	//always_ff @ (posedge CLOCK_50)
-	always_ff @ (posedge clk)
+	always_ff @ (posedge CLOCK_50)
 	begin
-		/*aux <= 7'b0;
+		aux <= 7'b0;
 		A <= SW[5:0];
 		B <= SW[11:6];
 		modo <= SW[12];
@@ -33,8 +32,8 @@ module ULA (input [5:0] A,
 		reset <= SW[17];
 		LEDR[5:0] <= o_resultado[5:0];
 		LEDR[7] <= o_zero;
-		LEDR[9] <= o_overflow;*/
-		aux <= 7'b0;
+		LEDR[9] <= o_overflow;
+		
 		if (reset)
 		begin
 			aux <= 7'b0;
