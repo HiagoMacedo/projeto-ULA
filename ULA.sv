@@ -27,8 +27,8 @@ module ULA (input CLOCK_50,
 		aux <= 7'b0;
 		A <= SW[5:0];
 		B <= SW[11:6];
-		modo <= SW[12];
-		operacao <= SW[15:13];
+		operacao <= SW[14:12];
+		modo <= SW[15];
 		reset <= SW[17];
 		LEDR[5:0] <= o_resultado[5:0];
 		LEDR[7] <= o_zero;
