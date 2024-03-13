@@ -4,7 +4,7 @@
 				input reset,
 				clk,
 				modo,
-				output logic [5:0] o_resultado,
+				output logic [6:0] o_resultado,
 				output logic o_overflow,
 				o_zero);
 */
@@ -36,7 +36,6 @@ module ULA (input CLOCK_50,
 		
 		if (reset)
 		begin
-			aux <= 7'b0;
 			o_resultado <= 6'b0;
 			o_overflow <= 1'b0;
 			o_zero <= 1'b0;
@@ -47,38 +46,14 @@ module ULA (input CLOCK_50,
 			begin
 				o_overflow <= 1'b0;
 				case(operacao)
-					3'b000: begin
-						o_resultado <= A & B;
-						o_zero <= (o_resultado == 6'b0);
-					end
-					3'b001: begin
-						o_resultado <= ~A;
-						o_zero <= (o_resultado == 6'b0);
-					end
-					3'b010: begin
-						o_resultado <= ~B;
-						o_zero <= (o_resultado == 6'b0);
-					end
-					3'b011: begin 
-						o_resultado <= A | B;
-						o_zero <= (o_resultado == 6'b0);
-					end
-					3'b100: begin 
-						o_resultado <= A ^ B;
-						o_zero <= (o_resultado == 6'b0);
-					end
-					3'b101: begin
-						o_resultado <= ~(A & B);
-						o_zero <= (o_resultado == 6'b0);
-					end
-					3'b110: begin 
-						o_resultado <= A;
-						o_zero <= (o_resultado == 6'b0);
-					end
-					3'b111: begin
-						o_resultado <= B;
-						o_zero <= (o_resultado == 6'b0);
-					end
+					3'b000: o_resultado <= A & B;
+					3'b001: o_resultado <= ~A;
+					3'b010: o_resultado <= ~B;
+					3'b011: o_resultado <= A | B;
+					3'b100: o_resultado <= A ^ B;
+					3'b101: o_resultado <= ~(A & B);
+					3'b110: o_resultado <= A;
+					3'b111: o_resultado <= B;
 				endcase
 			end
 			else /* operações aritméticas */
@@ -88,52 +63,48 @@ module ULA (input CLOCK_50,
 						aux <= A + B;
 						o_resultado <= aux[5:0];
 						o_overflow <= aux[6];
-						o_zero <= (o_resultado == 6'b0);
+						//o_resultado <= A + B;
 					end
 					3'b001: begin
 						aux <= A - B;
 						o_resultado <= aux[5:0];
 						o_overflow <= aux[6];
-						o_zero <= (o_resultado == 6'b0);
+						//o_resultado <= A - B;
 					end
 					3'b010: begin
 						aux <= A + (~B);
 						o_resultado <= aux[5:0];
 						o_overflow <= aux[6];
-						o_zero <= (o_resultado == 6'b0);
 					end
 					3'b011: begin 
 						aux <= A - (~B);
 						o_resultado <= aux[5:0];
 						o_overflow <= aux[6];
-						o_zero <= (o_resultado == 6'b0);
 					end
 					3'b100: begin
 						aux <= A + 1'b1;
 						o_resultado <= aux[5:0];
 						o_overflow <= aux[6];
-						o_zero <= (o_resultado == 6'b0);
 					end
 					3'b101: begin
 						aux <= A - 1'b1;
 						o_resultado <= aux[5:0];
 						o_overflow <= aux[6];
-						o_zero <= (o_resultado == 6'b0);
 					end
 					3'b110:  begin
 						aux <= B + 1'b1;
 						o_resultado <= aux[5:0];
 						o_overflow <= aux[6];
-						o_zero <= (o_resultado == 6'b0);
 					end
 					3'b111: begin 
 						aux <= B - 1'b1;
 						o_resultado <= aux[5:0];
 						o_overflow <= aux[6];
-						o_zero <= (o_resultado == 6'b0);
 					end
 				endcase
+				//o_overflow <= o_resultado[6];
 			end
+			o_zero <= (o_resultado[5:0] == 6'b0);
 		end
 	end
 endmodule 
