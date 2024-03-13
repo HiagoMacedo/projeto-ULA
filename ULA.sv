@@ -40,7 +40,7 @@ module ULA (input CLOCK_50,
 		end
 		else 
 		begin
-			if (modo == 1) /* operações lógicas */
+			if (modo == 1) /* operacoes logicas */
 			begin
 				o_overflow <= 1'b0;
 				case(operacao)
@@ -54,7 +54,7 @@ module ULA (input CLOCK_50,
 					3'b111: o_resultado <= B;
 				endcase
 			end
-			else /* operações aritméticas */
+			else /* operacoes aritmeticas */
 			begin
 				case(operacao)
 					3'b000: begin
